@@ -1,6 +1,6 @@
 import {PropTypes} from "prop-types"
 
-export const Card = ({ data={}, handleAddToCart=()=>{},IsAddedToCart=false}) => {
+export const Card = ({ data,Cart,setCart}) => {
 
     function renderRatings(rating = 0) {
         let ratingsNode = [];
@@ -10,10 +10,16 @@ export const Card = ({ data={}, handleAddToCart=()=>{},IsAddedToCart=false}) => 
         return ratingsNode;
       }
     
+      const AddToCart=()=>{
+        setCart([...Cart,data])
+      };
+      const RemoveFromCart=()=>{
+        setCart(Cart.filter((c)=>c.name!==data.name));
+      };
     
   return (
-   
-    <div className="py-1 mt-3">
+    
+    <div className="shake-x py-1 mt-3">
         <div className="col mb-1">
                         <div className="card " style={{height:"550px"}}>
                         {/* <!-- Sale badge--> */}
@@ -34,7 +40,7 @@ export const Card = ({ data={}, handleAddToCart=()=>{},IsAddedToCart=false}) => 
                             </div>
                             {/* <!-- Product actions--> */}
                             <div className="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div className="text-center"><button className="btn btn-outline-dark mt-auto"  onClick={()=> handleAddToCart(data)}>{IsAddedToCart?"Added To Cart":"Add To Cart"}</button></div>
+                                <div className="text-center">{Cart.includes(data)?(<button className="btn btn-outline-dark mt-auto"  onClick={RemoveFromCart}>Remove From Cart</button>):(<button className="btn btn-outline-dark mt-auto"  onClick={AddToCart}>Add To Cart</button>)}</div>
                             </div>
                         </div>
                     </div>
@@ -46,6 +52,9 @@ export const Card = ({ data={}, handleAddToCart=()=>{},IsAddedToCart=false}) => 
 
 Card.propTypes={
     data:PropTypes.object,
-    handleAddToCart:PropTypes.func,
-    IsAddedToCart:PropTypes.bool,
+    includes:PropTypes.func,
+    Cart:PropTypes.array,
+    setCart:PropTypes.func,
+    
+      
 }

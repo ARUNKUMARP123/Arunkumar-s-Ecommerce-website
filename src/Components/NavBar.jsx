@@ -1,6 +1,6 @@
 
 import {PropTypes} from "prop-types"
-export const NavBar = ({Quantity=0}) => {
+export const NavBar = ({Cart}) => {
   return (
    <div>
    
@@ -27,7 +27,7 @@ export const NavBar = ({Quantity=0}) => {
                         <button className="btn btn-outline-dark" type="submit">
                             <i className="bi-cart-fill me-1"></i>
                             Cart
-                            <span className="badge bg-dark text-white ms-1 rounded-pill">{Quantity}</span>
+                            <span className="badge bg-dark text-white ms-1 rounded-pill">{Cart.length}</span>
                         </button>
                     </form>
                 </div>
@@ -40,4 +40,5 @@ export const NavBar = ({Quantity=0}) => {
 
 NavBar.propTypes={
     Quantity:PropTypes.number,
+    Cart:PropTypes.array,
 }

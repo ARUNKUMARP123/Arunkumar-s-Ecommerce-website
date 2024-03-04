@@ -1,27 +1,20 @@
 import{PropTypes} from "prop-types"
 import {Card} from './Card'
 
-export const ProductContainer = ({Products=[],handleAddToCart=()=>{}, Cart=[]}) => {
+export const ProductContainer = ({Products=[],Cart,setCart}) => {
 
-  function findCartStatus(Product={}){
-    return (Cart.some((d)=>d.name==Product.name))
-
-  }
 
 
   return (
     <>
-        {Products.map((data,index)=>{
-            return (
-              
-            <Card 
+        {Products.map((data,index)=>( 
+        <Card 
             key={`${data.name}-${index}`} 
             data={data}
-             handleAddToCart={handleAddToCart}
-             IsAddedToCart={findCartStatus(data)}
-             />)
-        }
-         )};
+            Cart={Cart}
+            setCart={setCart}
+            
+             />))};
     </>
   )
 }
@@ -29,6 +22,6 @@ export const ProductContainer = ({Products=[],handleAddToCart=()=>{}, Cart=[]}) 
 
 ProductContainer.propTypes={
   Products:PropTypes.array,
-  handleAddToCart:PropTypes.func, 
-  Cart:PropTypes.array,
+ Cart:PropTypes.array,
+ setCart:PropTypes.func,
 }
