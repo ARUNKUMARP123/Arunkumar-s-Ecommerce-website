@@ -12,7 +12,7 @@ function App() {
   const [Products,setProducts]=useState([]);
   const [Cart,setCart]=useState([]);
   useEffect(()=>{ 
-      fetch("http://localhost:5174/Product.json").then((response)=>response.json())
+      fetch("http://localhost:5173/Product.json").then((response)=>response.json())
       .then((result)=>{
         if(result.data.length>0){
           setProducts(result.data)
